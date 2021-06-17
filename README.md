@@ -10,17 +10,19 @@
     + get-npm-info
 
 ### 检查版本号
+require('package.json').version 获取 core 版本
 
 ### 检查 node 版本
+-   semver 版本对比库使用
 
 ### 检查 root 启动
-
+-   check-root 库使用
 ### 检查用户主目录
-
+-   user-home 库使用
 ### 检查入参
-
+-   minimist 库使用, 更好的获取入参
 ### 检查环境变量
-
+-   doenv 库的使用
 ### 检查是否为最新版本
 
 ### 检查更新

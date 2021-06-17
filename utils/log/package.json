@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/smilecode11/smiling-cli-hw/issues"
   },
-  "gitHead": "97f40c352c61c123be4571368998230495e1be64"
+  "gitHead": "97f40c352c61c123be4571368998230495e1be64",
+  "dependencies": {
+    "npmlog": "^4.1.2"
+  }
 }
