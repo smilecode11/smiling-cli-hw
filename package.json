@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "smiling-cli-hw": "core/cli/bin/index.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"no test specified\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lerna": "^4.0.0"
+    "lerna": "^3.22.1"
   }
 }
