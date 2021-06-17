@@ -13,6 +13,9 @@
   "files": [
     "lib"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/smilecode11/smiling-cli-hw.git"
@@ -23,5 +26,5 @@
   "bugs": {
     "url": "https://github.com/smilecode11/smiling-cli-hw/issues"
   },
-  "gitHead": "6e159283c0d78bd0eccfe5623f03bdf8c827a0dc"
+  "gitHead": "1895cfc7ab7ab9e838617c1dfef236061268f9ce"
 }

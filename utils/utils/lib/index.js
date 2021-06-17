@@ -1,7 +1,8 @@
 'use strict';
 
-module.exports = utils;
+module.exports = index;
 
-function utils() {
+function index() {
     // TODO
+    console.log('utils console')
 }
