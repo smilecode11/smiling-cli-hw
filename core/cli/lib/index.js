@@ -13,7 +13,7 @@ const pathExists = require("path-exists")
 
 let args;
 
-function core(argv) {
+async function core(argv) {
     try {
         checkPkgVersion()
         checkNodeVersion()
@@ -21,7 +21,7 @@ function core(argv) {
         checkUserHome()
         checkInputArgs()
         checkEnv()
-        checkGlobalUpdate()
+        await checkGlobalUpdate()
     } catch (e) {
         log.error(e.message)
     }

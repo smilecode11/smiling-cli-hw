@@ -24,5 +24,7 @@ require('package.json').version 获取 core 版本
 ### 检查环境变量
 -   doenv 库的使用
 ### 检查是否为最新版本
+-   get-npm-info 模块开发
+    + axios 库使用
 
 ### 检查更新
