@@ -1,6 +1,6 @@
 {
   "name": "@smiling-cli-hw/core",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "core 文件包",
   "author": "smiling_chenxin <smilewupeng@gmail.com>",
   "homepage": "https://github.com/smilecode11/smiling-cli-hw#readme",
@@ -28,8 +28,8 @@
   },
   "gitHead": "97f40c352c61c123be4571368998230495e1be64",
   "dependencies": {
-    "@smiling-cli-hw/log": "file:../../utils/log",
     "@smiling-cli-hw/get-npm-info": "file:../../utils/get-npm-info",
+    "@smiling-cli-hw/log": "file:../../utils/log",
     "colors": "^1.4.0",
     "dotenv": "^10.0.0",
     "import-local": "^3.0.2",
