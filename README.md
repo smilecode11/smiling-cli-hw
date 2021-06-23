@@ -26,5 +26,7 @@ require('package.json').version 获取 core 版本
 ### 检查是否为最新版本
 -   get-npm-info 模块开发
     + axios 库使用
-
 ### 检查更新
+-   node 版本对比
+    +   semver 库的使用
+    +   get-npm-info 获取最新版本函数开发
