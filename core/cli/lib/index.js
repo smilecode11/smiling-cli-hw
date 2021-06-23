@@ -4,27 +4,85 @@ module.exports = core;
 
 const pkg = require("../package.json");
 const log = require("@smiling-cli-hw/log");
+const exec = require("@smiling-cli-hw/exec");
 const constant = require("./const");
 const path = require("path");
 const semver = require("semver");
 const colors = require("colors/safe");
 const userHome = require("user-home");
-const pathExists = require("path-exists")
+const pathExists = require("path-exists").sync;
+const commander = require("commander");
+let program = new commander.Command();
 
-let args;
-
-async function core(argv) {
+async function core() {
     try {
-        checkPkgVersion()
-        checkNodeVersion()
-        checkRoot()
-        checkUserHome()
-        checkInputArgs()
-        checkEnv()
-        await checkGlobalUpdate()
+        prepare() //  主流程检查
+        registerCommands() //  命令注册
     } catch (e) {
-        log.error(e.message)
+        if (process.env.LOG_LEVEL === 'verbose') {
+            log.error(e.message);
+        }
     }
+}
+
+/** 命令注册*/
+function registerCommands() {
+    program
+        .name(Object.keys(pkg.bin)[0])
+        .usage('<command> [options]')
+        .version(pkg.version)
+        .option('-d, --debug', '是否开启调试模式', false)
+        .option('-tp, --targetPath <targetPath>', "是否指定本地调试文件目录", "");
+
+    //  init 命令监听
+    program
+        .command("init [programName]")
+        .option('-f, --force', '是否强制初始化项目')
+        .action(exec)
+
+    //  环境存储 targetPath
+    program.on("option:targetPath", function () {
+        process.env.CLI_TARGET_PATH = program.opts().targetPath;
+    })
+
+    //  debug option监听
+    program.on("option:debug", function () {
+        if (program.opts().debug) {
+            process.env.LOG_LEVEL = 'verbose';
+        } else {
+            process.env.LOG_LEVEL = 'info';
+        }
+        log.level = process.env.LOG_LEVEL;
+    })
+
+    //  未知命令处理|提示无效命令,并展示可用命令
+    program.on("command:*", function (obj) {
+        const availableCommands = program.commands.map(cmd => cmd.name());
+        console.log(colors.red(`未知命令: ${obj[0]}`));
+        if (availableCommands.length > 0) {
+            console.log(colors.red(`可用命令: ${availableCommands.join(",")}`));
+        }
+    })
+
+    //  help 帮助返回
+    if (process.argv.length < 3) {
+        program.outputHelp();
+        console.log();
+    }
+
+
+    program.parse(process.argv);
+}
+
+/** 初始化检查准备*/
+async function prepare() {
+    checkPkgVersion()
+    // checkNodeVersion()
+    checkRoot()
+    checkUserHome()
+    // checkInputArgs()
+    checkEnv()
+    await checkGlobalUpdate()
 }
 
 /** 检查脚手架版本*/
@@ -33,13 +91,13 @@ function checkPkgVersion() {
 }
 
 /** 检查当前 node 版本 & 最低版本设置*/
-function checkNodeVersion() {
+/* function checkNodeVersion() {
     const currentVersion = process.version;
     const lowestVersion = constant.LOWEST_NODE_VERSION;
     if (!semver.gte(currentVersion, lowestVersion)) {
         throw new Error(colors.red(`smiling-cli-hw 需要安装 v${lowestVersion} 以上版本的 node, 当前版本是 ${currentVersion}`))
     }
-}
+} */
 
 /** 检查 root 权限*/
 function checkRoot() {
@@ -54,34 +112,16 @@ function checkUserHome() {
     }
 }
 
-/** 检查入参*/
-function checkInputArgs() {
-    const minimist = require("minimist");
-    args = minimist(process.argv.slice(2))
-    /** 检查入参设定 log 模式*/
-    checkArgs()
-}
-
-function checkArgs() {
-    if (args.debug) {
-        process.env.LOG_LEVEL = 'verbose';
-    } else {
-        process.env.LOG_LEVEL = 'info';
-    }
-    log.level = process.env.LOG_LEVEL;
-}
-
 /** 检查环境变量*/
 function checkEnv() {
     const dotenv = require("dotenv");
-    const dotenvPath = path.resolve(userHome, '.env')
+    const dotenvPath = path.resolve(userHome, '.env');
     if (pathExists(dotenvPath)) {
         dotenv.config({
             path: dotenvPath
         })
     }
-    createDefaultEnvConfig()
-    log.verbose('缓存地址', process.env.CLI_HOME_PATH)
+    createDefaultEnvConfig();
 }
 
 function createDefaultEnvConfig() {
