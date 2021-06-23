@@ -1,0 +1,38 @@
+{
+  "name": "@smiling-cli-hw/package",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "smiling_chenxin <smilewupeng@gmail.com>",
+  "homepage": "https://github.com/smilecode11/smiling-cli-hw#readme",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smilecode11/smiling-cli-hw.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/smilecode11/smiling-cli-hw/issues"
+  },
+  "dependencies": {
+    "@smiling-cli-hw/format-path": "file:../../utils/format-path",
+    "@smiling-cli-hw/get-npm-info": "file:../../utils/get-npm-info",
+    "@smiling-cli-hw/utils": "file:../../utils/utils",
+    "fs-extra": "^10.0.0",
+    "npminstall": "^4.11.0",
+    "path-exists": "^4.0.0",
+    "pkg-dir": "^5.0.0"
+  }
+}

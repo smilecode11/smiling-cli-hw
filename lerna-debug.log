@@ -1,0 +1,9 @@
+0 silly argv {
+0 silly argv   _: [ 'create' ],
+0 silly argv   lernaVersion: '3.22.1',
+0 silly argv   '$0': 'lerna',
+0 silly argv   name: '@smiling-cli-hw/command'
+0 silly argv }
+1 notice cli v3.22.1
+2 verbose rootPath /Users/wupeng/Desktop/projects-study/smiling-cli-hw/smiling-cli-hw
+3 error

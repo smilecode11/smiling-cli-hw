@@ -30,3 +30,18 @@ require('package.json').version 获取 core 版本
 -   node 版本对比
     +   semver 库的使用
     +   get-npm-info 获取最新版本函数开发
+
+### command 基础命令开发
+-   脚手架启动阶段执行
+    +   检查版本号
+    +   检查 node 版本
+    +   检查 root 启动
+    +   检查用户主目录
+    +   检查环境变量
+    +   检查 cli 最新版本, 非最新并提示更新
+
+-   command 开发 debug & log 环境
+
+### 高性能脚手架设计和开发
+
+#### 动态加载 initCommand 开发 

@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "commander": "^7.2.0",
     "lerna": "^3.22.1"
   }
 }
